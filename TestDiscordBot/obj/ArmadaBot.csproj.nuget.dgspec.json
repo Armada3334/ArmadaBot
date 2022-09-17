@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "F:\\GithubRepos\\ArmadaBot\\TestDiscordBot\\TestDiscordBot.csproj": {}
+    "F:\\GithubRepos\\ArmadaBot\\TestDiscordBot\\ArmadaBot.csproj": {}
   },
   "projects": {
-    "F:\\GithubRepos\\ArmadaBot\\TestDiscordBot\\TestDiscordBot.csproj": {
+    "F:\\GithubRepos\\ArmadaBot\\TestDiscordBot\\ArmadaBot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\GithubRepos\\ArmadaBot\\TestDiscordBot\\TestDiscordBot.csproj",
-        "projectName": "TestDiscordBot",
-        "projectPath": "F:\\GithubRepos\\ArmadaBot\\TestDiscordBot\\TestDiscordBot.csproj",
+        "projectUniqueName": "F:\\GithubRepos\\ArmadaBot\\TestDiscordBot\\ArmadaBot.csproj",
+        "projectName": "ArmadaBot",
+        "projectPath": "F:\\GithubRepos\\ArmadaBot\\TestDiscordBot\\ArmadaBot.csproj",
         "packagesPath": "C:\\Users\\jerem\\.nuget\\packages\\",
         "outputPath": "F:\\GithubRepos\\ArmadaBot\\TestDiscordBot\\obj\\",
         "projectStyle": "PackageReference",

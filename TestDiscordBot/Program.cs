@@ -28,7 +28,7 @@ public class Program
         
         _client.Ready += async () =>
         {
-            Console.WriteLine("Bot is connected!");
+            Console.WriteLine("ArmadaBot is connected!");
             var guild = _client.GetGuild(652617292768870450);
             var guildCommand = new SlashCommandBuilder();
             guildCommand.WithName("first-command");
