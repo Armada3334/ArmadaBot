@@ -3,6 +3,7 @@ using Discord.Net;
 using Discord.WebSocket;
 using Newtonsoft.Json;
 
+
 public class Program
 {
     private DiscordSocketClient _client;
@@ -15,6 +16,7 @@ public class Program
 
     public async Task MainAsync()
     {
+
         // When working with events that have Cacheable<IMessage, ulong> parameters,
         // you must enable the message cache in your config settings if you plan to
         // use the cached message entity. 
@@ -29,6 +31,7 @@ public class Program
         _client.Ready += async () =>
         {
             Console.WriteLine("ArmadaBot is connected!");
+            _client.MessageReceived += Client_MessageReceived;
             var guild = _client.GetGuild(652617292768870450);
             var guildCommand = new SlashCommandBuilder();
             guildCommand.WithName("first-command");
@@ -54,7 +57,16 @@ public class Program
 
         await Task.Delay(-1);
     }
-    
+
+    private async Task Client_MessageReceived(SocketMessage arg)
+    {
+        if (arg.Content == "!ping")
+        {
+            // Sends a message to the channel the message was received from
+            await arg.Channel.SendMessageAsync("Pong!");
+        }
+    }
+
     private Task _client_SlashCommandExecuted(SocketSlashCommand command)
     {
         return command.RespondAsync($"You ran {command.Data.Name}");
