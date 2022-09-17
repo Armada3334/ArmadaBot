@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\GithubRepos\\ArmadaBot\\TestDiscordBot\\ArmadaBot.csproj": {}
+    "F:\\CodingRepos\\ArmadaBot\\TestDiscordBot\\ArmadaBot.csproj": {}
   },
   "projects": {
-    "F:\\GithubRepos\\ArmadaBot\\TestDiscordBot\\ArmadaBot.csproj": {
+    "F:\\CodingRepos\\ArmadaBot\\TestDiscordBot\\ArmadaBot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\GithubRepos\\ArmadaBot\\TestDiscordBot\\ArmadaBot.csproj",
+        "projectUniqueName": "F:\\CodingRepos\\ArmadaBot\\TestDiscordBot\\ArmadaBot.csproj",
         "projectName": "ArmadaBot",
-        "projectPath": "F:\\GithubRepos\\ArmadaBot\\TestDiscordBot\\ArmadaBot.csproj",
+        "projectPath": "F:\\CodingRepos\\ArmadaBot\\TestDiscordBot\\ArmadaBot.csproj",
         "packagesPath": "C:\\Users\\jerem\\.nuget\\packages\\",
-        "outputPath": "F:\\GithubRepos\\ArmadaBot\\TestDiscordBot\\obj\\",
+        "outputPath": "F:\\CodingRepos\\ArmadaBot\\TestDiscordBot\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,9 +45,33 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Discord.Net": {
+            "DSharpPlus": {
               "target": "Package",
-              "version": "[3.8.1, )"
+              "version": "[4.2.0, )"
+            },
+            "DSharpPlus.CommandsNext": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "DSharpPlus.Interactivity": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "DSharpPlus.Lavalink": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "DSharpPlus.Rest": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "DSharpPlus.SlashCommands": {
+              "target": "Package",
+              "version": "[4.2.0, )"
+            },
+            "DSharpPlus.VoiceNext": {
+              "target": "Package",
+              "version": "[4.2.0, )"
             }
           },
           "imports": [

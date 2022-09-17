@@ -1,86 +1,81 @@
-﻿using Discord;
-using Discord.Net;
-using Discord.WebSocket;
-using Newtonsoft.Json;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using DSharpPlus;
 
-
-public class Program
+namespace ArmadaBot
 {
-
-    private DiscordSocketClient _client;
-    static void Main(string[] args)
+    class Program
     {
-        // Print the token to verify that it is being passed through from the environment variable.
-        Console.WriteLine("Token is " + Environment.GetEnvironmentVariable("DiscordToken"), EnvironmentVariableTarget.User);
-        new Program().MainAsync().GetAwaiter().GetResult();
-    }
-    private Task Log(LogMessage msg)
-    {
-        Console.WriteLine(msg.ToString());
-        return Task.CompletedTask;
-    }
-    
-    public async Task MainAsync()
-    {
-
-        // When working with events that have Cacheable<IMessage, ulong> parameters,
-        // you must enable the message cache in your config settings if you plan to
-        // use the cached message entity. 
-        var _config = new DiscordSocketConfig { MessageCacheSize = 100 };
-        _client = new DiscordSocketClient(_config);
-
-        //Console.WriteLine(Discord.permissi);
-        await _client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("DiscordToken", EnvironmentVariableTarget.User));
-        await _client.StartAsync();
-        
-        _client.Ready += async () =>
+        static void Main(string[] args)
         {
-            Console.WriteLine("ArmadaBot is connected!");
-            _client.MessageReceived += Client_MessageReceived;
-            var guild = _client.GetGuild(652617292768870450);
-            var guildCommand = new SlashCommandBuilder();
-            guildCommand.WithName("first-command");
-            guildCommand.WithName("First slash command");
-
-            var globalCommand = new SlashCommandBuilder();
-            globalCommand.WithName("first-global-command");
-            globalCommand.WithDescription("Global command woo");
-
-            try
-            {
-                await guild.CreateApplicationCommandAsync(guildCommand.Build());
-                await _client.CreateGlobalApplicationCommandAsync(globalCommand.Build());
-
-                _client.SlashCommandExecuted += _client_SlashCommandExecuted;
-            } catch (ApplicationCommandException e)
-            {
-                var json = JsonConvert.SerializeObject(e.Errors, Formatting.Indented);
-                Console.Write(json);
-            }
-        };
-
-
-        await Task.Delay(-1);
-    }
-
-    private async Task Client_MessageReceived(SocketMessage arg)
-    {
-        if (arg.Content == "!ping")
-        {
-            // Sends a message to the channel the message was received from
-            await arg.Channel.SendMessageAsync("Pong!");
+            MainAsync().GetAwaiter().GetResult();
         }
-    }
 
-    private Task _client_SlashCommandExecuted(SocketSlashCommand command)
-    {
-        return command.RespondAsync($"You ran {command.Data.Name}");
-    }
+        static async Task MainAsync()
+        {
+            // create a variable getToken to store the environment variable "DiscordToken"
+            string getToken = Environment.GetEnvironmentVariable(variable: "DiscordToken");
 
-    private async Task MessageUpdated(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel channel)
-    {
-        // If the message was not in the cache, downloading it will result in getting a copy of `after`.
-        var message = await before.GetOrDownloadAsync();
-        Console.WriteLine($"{message} -> {after}");
+
+            // Enter in both the token for the application, the type of token, and the intents of what the application will do
+            var discord = new DiscordClient(new DiscordConfiguration()
+            {
+                Token = getToken,
+                TokenType = TokenType.Bot,
+                Intents = DiscordIntents.All
+            });
+
+            discord.MessageCreated += async (s, e) =>
+            {
+
+                // Take an incoming message and make it lowercase, then check to see if any of the listed conditions are met
+                switch (e.Message.Content.ToLower())
+                {
+                    case "!ping":
+                        await e.Message.RespondAsync("Pong!");
+                        break;
+                    case "!pong":
+                        await e.Message.RespondAsync("Ping!");
+                        break;
+                    case "!screm":
+                        await e.Message.RespondAsync("SCREM SCREM SCREM SCREM");
+                        break;
+                    case "!cum":
+                        await e.Message.RespondAsync("*moans*");
+                        break;
+
+                }
+                if (s.CurrentUser.Id != e.Author.Id)
+                {
+                    if (e.Message.Content.ToLower().Contains("scromse"))
+                    {
+                        await e.Message.RespondAsync("THAT'S ILLEGAL, GO TO SCREM JAIL");
+                    } 
+                    else if (e.Message.Content.ToLower().Contains("coe"))
+                    {
+                        await e.Message.RespondAsync("Leefnie gets ear hurmt at the smallest screm, very much a coe");
+                    }
+                }
+
+
+                // Old ineffecient way of processing specific outputs for a given message input.
+
+                /*                if (e.Message.Content.ToLower().StartsWith("!ping"))
+                                    await e.Message.RespondAsync("pong!");
+                                else if (e.Message.Content.ToLower().StartsWith("!screm"))
+                                    await e.Message.RespondAsync("SCREM SCREM SCREM SCREM");
+                                else if (e.Message.Content.ToLower().StartsWith("!cum"))
+                                    await e.Message.RespondAsync("*moans*");
+                                else if (e.Message.Content.ToLower().Contains("scromse"))
+                                    await e.Message.RespondAsync("THAT'S ILLEGAL, GO TO SCREM JAIL");
+                                else if (e.Message.Content.ToLower().Contains("coe"))
+                                    await e.Message.RespondAsync("Leefnie gets ear hurmt at the smallest screm, very much a coe");*/
+
+            };
+
+            await discord.ConnectAsync();
+            await Task.Delay(-1);
+        }
     }
 }
