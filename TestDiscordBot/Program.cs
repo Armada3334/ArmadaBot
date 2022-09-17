@@ -41,9 +41,6 @@ namespace ArmadaBot
                     case "!screm":
                         await e.Message.RespondAsync("SCREM SCREM SCREM SCREM");
                         break;
-                    case "!cum":
-                        await e.Message.RespondAsync("*moans*");
-                        break;
 
                 }
                 if (s.CurrentUser.Id != e.Author.Id)
