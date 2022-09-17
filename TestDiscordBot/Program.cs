@@ -6,14 +6,20 @@ using Newtonsoft.Json;
 
 public class Program
 {
+
     private DiscordSocketClient _client;
     static void Main(string[] args)
     {
+        // Print the token to verify that it is being passed through from the environment variable.
         Console.WriteLine("Token is " + Environment.GetEnvironmentVariable("DiscordToken"), EnvironmentVariableTarget.User);
         new Program().MainAsync().GetAwaiter().GetResult();
     }
-
-
+    private Task Log(LogMessage msg)
+    {
+        Console.WriteLine(msg.ToString());
+        return Task.CompletedTask;
+    }
+    
     public async Task MainAsync()
     {
 
@@ -22,7 +28,6 @@ public class Program
         // use the cached message entity. 
         var _config = new DiscordSocketConfig { MessageCacheSize = 100 };
         _client = new DiscordSocketClient(_config);
-
 
         //Console.WriteLine(Discord.permissi);
         await _client.LoginAsync(TokenType.Bot, Environment.GetEnvironmentVariable("DiscordToken", EnvironmentVariableTarget.User));
