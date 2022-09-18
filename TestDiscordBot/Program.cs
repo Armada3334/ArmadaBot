@@ -39,7 +39,7 @@ namespace ArmadaBot
             var commands = discord.UseCommandsNext(new CommandsNextConfiguration()
             {
                     StringPrefixes = new[] { "!" }
-                });
+            });
             commands.RegisterCommands(Assembly.GetExecutingAssembly());
 
 
