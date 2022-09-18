@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArmadaBot", "TestDiscordBot\ArmadaBot.csproj", "{406FD200-243F-43B5-9E0A-351E0A157001}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArmadaBot", "ArmadaBotFiles\ArmadaBot.csproj", "{406FD200-243F-43B5-9E0A-351E0A157001}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

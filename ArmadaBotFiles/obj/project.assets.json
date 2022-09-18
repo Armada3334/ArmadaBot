@@ -4590,11 +4590,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\CodingRepos\\ArmadaBot\\TestDiscordBot\\ArmadaBot.csproj",
+      "projectUniqueName": "F:\\CodingRepos\\ArmadaBot\\ArmadaBotFiles\\ArmadaBot.csproj",
       "projectName": "ArmadaBot",
-      "projectPath": "F:\\CodingRepos\\ArmadaBot\\TestDiscordBot\\ArmadaBot.csproj",
+      "projectPath": "F:\\CodingRepos\\ArmadaBot\\ArmadaBotFiles\\ArmadaBot.csproj",
       "packagesPath": "C:\\Users\\jerem\\.nuget\\packages\\",
-      "outputPath": "F:\\CodingRepos\\ArmadaBot\\TestDiscordBot\\obj\\",
+      "outputPath": "F:\\CodingRepos\\ArmadaBot\\ArmadaBotFiles\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
