@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using Microsoft.Extensions.Logging;
+using DSharpPlus.Net;
+using DSharpPlus.Lavalink;
 
 namespace ArmadaBot
 {
@@ -26,15 +28,10 @@ namespace ArmadaBot
             {
                 Token = getToken,
                 TokenType = TokenType.Bot,
-                Intents = DiscordIntents.All
-            });
-
-            // Create a logger to output into the console
-            new DiscordConfiguration()
-            {
+                Intents = DiscordIntents.All,
                 MinimumLogLevel = LogLevel.Debug,
                 LogTimestampFormat = "MMM dd yyyy - hh:mm:ss tt"
-            };
+            });
 
             // Create a new command handler with the prefix of "!"
             var commands = discord.UseCommandsNext(new CommandsNextConfiguration()
@@ -43,8 +40,24 @@ namespace ArmadaBot
             });
             commands.RegisterCommands(Assembly.GetExecutingAssembly());
 
+            var endpoint = new ConnectionEndpoint
+            {
+                Hostname = "127.0.0.1", // From server configuration
+                Port = 2333 // From server configuration
+            };
+
+            var lavalinkConfig = new LavalinkConfiguration
+            {
+                Password = "scremmingpassword", // From server configuration
+                RestEndpoint = endpoint,
+                SocketEndpoint = endpoint
+            };
+
+            var lavalink = discord.UseLavalink();
+
             // Connect to the discord bot and wait to prevent the console window from closing prematurely
             await discord.ConnectAsync();
+            await lavalink.ConnectAsync(lavalinkConfig);
             await Task.Delay(-1);
         }
     }
