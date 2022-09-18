@@ -7,6 +7,7 @@ using DSharpPlus.CommandsNext;
 using Microsoft.Extensions.Logging;
 using DSharpPlus.Net;
 using DSharpPlus.Lavalink;
+using DSharpPlus.Entities;
 
 namespace ArmadaBot
 {
@@ -34,12 +35,12 @@ namespace ArmadaBot
             });
 
             // Create a new command handler with the prefix of "!"
-            var commands = discord.UseCommandsNext(new CommandsNextConfiguration()
+            var commands = discord.UseCommandsNext(new CommandsNextConfiguration
             {
                     StringPrefixes = new[] { "!" }
             });
             commands.RegisterCommands(Assembly.GetExecutingAssembly());
-
+            
             var endpoint = new ConnectionEndpoint
             {
                 Hostname = "127.0.0.1", // From server configuration
