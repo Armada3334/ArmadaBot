@@ -21,7 +21,7 @@ public class MusicCommands : BaseCommandModule
 
         if (channel.Type != ChannelType.Voice)
         {
-            await ctx.RespondAsync("Not a valid voice channel.");
+            await ctx.RespondAsync("Not a valid voice channel or it is the name of an existing text channel.");
             return;
         }
 
