@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using DSharpPlus;
+using Microsoft.Extensions.Logging;
 
 namespace ArmadaBot
 {
@@ -25,6 +26,12 @@ namespace ArmadaBot
                 TokenType = TokenType.Bot,
                 Intents = DiscordIntents.All
             });
+
+            new DiscordConfiguration()
+            {
+                MinimumLogLevel = LogLevel.Debug,
+                LogTimestampFormat = "MMM dd yyyy - hh:mm:ss tt"
+            };
 
             discord.MessageCreated += async (s, e) =>
             {
@@ -52,6 +59,10 @@ namespace ArmadaBot
                     else if (e.Message.Content.ToLower().Contains("coe"))
                     {
                         await e.Message.RespondAsync("Leefnie gets ear hurmt at the smallest screm, very much a coe");
+                    }
+                    else if (e.Message.Content.ToLower().Contains("foe"))
+                    {
+                        await e.Message.RespondAsync("Armada is definitely not a foe, he doesnt even scroe, smhhh");
                     }
                 }
 
